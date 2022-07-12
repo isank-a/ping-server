@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ping-server-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ping-server-app
+  template:
+    metadata:
+      labels:
+        app: ping-server-app
+    spec:
+      containers:
+        - name: ping-server-app
+          image: pingserver:0.1.2
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8095
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ping-server
+spec:
+  selector:
+    app: ping-server-app
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8095
+      targetPort: 8095
