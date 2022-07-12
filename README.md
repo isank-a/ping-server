@@ -53,5 +53,5 @@ docker run --rm --name ping-server --publish 8095:8095 pingserver:1.0.0
 There's a Kubernetes [manifest](pingserver.yaml) as well
 
 ```console
-kubectl apply -f pingserver.yaml
+kubectl apply -f ./pingserver.yaml
 ```
