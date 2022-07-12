@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ping-server-app
-          image: pingserver:0.1.2
+          image: pingserver:1.0.0
           resources:
             limits:
               memory: "128Mi"
