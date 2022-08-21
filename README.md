@@ -55,3 +55,7 @@ There's a Kubernetes [manifest](pingserver.yaml) as well
 ```console
 kubectl apply -f ./pingserver.yaml
 ```
+
+## Usage
+
+A call to `localhost:8095/pingserver/v1/ping` from your favorite REST client should result in `PONG!`
