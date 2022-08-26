@@ -1,22 +1,26 @@
-ARG JRE=azul/zulu-openjdk-alpine:17-jre-headless
+FROM gradle:jdk17 as builder
 
-FROM ${JRE} as builder
+WORKDIR /project
+
+COPY . /project
+
+RUN gradle clean build -x test
+
+FROM azul/zulu-openjdk-alpine:17-jre-headless as layer
 
 WORKDIR /application
 
-ARG JAR_FILE=build/libs/*.jar
-
-COPY ${JAR_FILE} application.jar
+COPY --from=builder /project/build/libs/*.jar application.jar
 
 RUN java -Djarmode=layertools -jar application.jar extract
 
-FROM ${JRE}
+FROM azul/zulu-openjdk-alpine:17-jre-headless
 
 WORKDIR /application
 
-COPY --from=builder /application/dependencies/ ./
-COPY --from=builder /application/spring-boot-loader/ ./
-COPY --from=builder /application/snapshot-dependencies/ ./
-COPY --from=builder /application/application/ ./
+COPY --from=layer /application/dependencies/ ./
+COPY --from=layer /application/spring-boot-loader/ ./
+COPY --from=layer /application/snapshot-dependencies/ ./
+COPY --from=layer /application/application/ ./
 
 ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
