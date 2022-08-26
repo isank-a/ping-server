@@ -23,4 +23,10 @@ COPY --from=layer /application/spring-boot-loader/ ./
 COPY --from=layer /application/snapshot-dependencies/ ./
 COPY --from=layer /application/application/ ./
 
+RUN addgroup --system pingservergroup
+RUN adduser --system --shell /bin/sh -G pingservergroup pingserveruser
+RUN chown -R pingserveruser:pingservergroup /application
+
+USER pingserveruser
+
 ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
