@@ -39,13 +39,13 @@ or
 The project also contains a [Dockerfile](Dockerfile) which can be used to build an image
 
 ```console
-docker build --rm --tag pingserver:1.0.1 ./
+docker build --rm --tag pingserver:1.0.2 ./
 ```
 
 and run it
 
 ```console
-docker run --rm --name ping-server --publish 8095:8095 pingserver:1.0.1
+docker run --rm --name ping-server --publish 8095:8095 pingserver:1.0.2
 ```
 
 ## Kubernetes

@@ -1,4 +1,4 @@
-ARG JRE=azul/zulu-openjdk:17.0.2-jre-headless
+ARG JRE=azul/zulu-openjdk-alpine:17-jre-headless
 
 FROM ${JRE} as builder
 
