@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: ping-server-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ping-server-app
@@ -17,8 +17,8 @@ spec:
           image: pingserver:1.0.5
           resources:
             limits:
-              memory: "128Mi"
-              cpu: "500m"
+              memory: "1024Mi"
+              cpu: "1"
           ports:
             - containerPort: 8095
 ---
