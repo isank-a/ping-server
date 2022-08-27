@@ -56,6 +56,10 @@ There's a Kubernetes [Manifest](pingserver.yaml) as well
 kubectl apply -f ./pingserver.yaml
 ```
 
+```console
+kubectl port-forward service/ping-server 8095:8095
+```
+
 ## Usage
 
 A call to `localhost:8095/pingserver/v1/ping` from your favorite REST client should result in `PONG!`
