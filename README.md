@@ -39,18 +39,18 @@ or
 The project also contains a [Dockerfile](Dockerfile) which can be used to build an image
 
 ```console
-docker build --rm --tag pingserver:1.0.4 ./
+docker build --rm --tag pingserver:1.0.5 ./
 ```
 
 and run it
 
 ```console
-docker run --rm --name ping-server --publish 8095:8095 pingserver:1.0.4
+docker run --rm --name ping-server --publish 8095:8095 pingserver:1.0.5
 ```
 
 ## Kubernetes
 
-There's a Kubernetes [manifest](pingserver.yaml) as well
+There's a Kubernetes [Manifest](pingserver.yaml) as well
 
 ```console
 kubectl apply -f ./pingserver.yaml
