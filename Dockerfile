@@ -23,10 +23,12 @@ COPY --from=layer /application/spring-boot-loader/ ./
 COPY --from=layer /application/snapshot-dependencies/ ./
 COPY --from=layer /application/application/ ./
 
-RUN addgroup --system pingservergroup
-RUN adduser --system --shell /bin/sh -G pingservergroup pingserveruser
-RUN chown -R pingserveruser:pingservergroup /application
+RUN apk add --no-cache tini
 
-USER pingserveruser
+RUN addgroup --system psgrp
+RUN adduser --system --shell /bin/sh -G psgrp psusr
+RUN chown -R psusr:psgrp /application
 
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+USER psusr
+
+ENTRYPOINT ["/sbin/tini", "--", "java", "org.springframework.boot.loader.JarLauncher"]
