@@ -13,7 +13,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @WebMvcTest
 public class PingControllerTest {
 
-  private static final String PING_URI = "/ping";
+  public static final String PING_URI = "/ping";
+
+  public static final String PONG = "PONG!";
 
   @Autowired
   private MockMvc mockMvc;
@@ -28,6 +30,6 @@ public class PingControllerTest {
         .andExpectAll(
             MockMvcResultMatchers.status().isOk(),
             MockMvcResultMatchers.content().contentType(new MediaType(MediaType.TEXT_PLAIN, StandardCharsets.UTF_8)),
-            MockMvcResultMatchers.content().string("PONG!"));
+            MockMvcResultMatchers.content().string(PONG));
   }
 }

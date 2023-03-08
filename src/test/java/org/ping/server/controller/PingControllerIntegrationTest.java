@@ -17,16 +17,13 @@ import org.springframework.http.ResponseEntity;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class PingControllerIntegrationTest {
 
-  private static final String PING_URI = "/ping";
-
-
   @Autowired
   TestRestTemplate restTemplate;
 
   @Test
   void ping_returns_pong() {
 
-    ResponseEntity<String> responseEntity = this.restTemplate.getForEntity(PING_URI, String.class);
+    ResponseEntity<String> responseEntity = this.restTemplate.getForEntity(PingControllerTest.PING_URI, String.class);
 
     assertAll(
         () -> assertNotNull(responseEntity),
@@ -34,7 +31,7 @@ public class PingControllerIntegrationTest {
         () -> assertEquals(200, responseEntity.getStatusCode().value()),
         () -> assertEquals(new MediaType(MediaType.TEXT_PLAIN, StandardCharsets.UTF_8), responseEntity.getHeaders().getContentType()),
         () -> assertTrue(responseEntity.hasBody()),
-        () -> assertEquals("PONG!", responseEntity.getBody())
+        () -> assertEquals(PingControllerTest.PONG, responseEntity.getBody())
     );
   }
 }
