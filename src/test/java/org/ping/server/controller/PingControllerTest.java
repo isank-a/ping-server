@@ -1,6 +1,5 @@
 package org.ping.server.controller;
 
-import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import java.nio.charset.StandardCharsets;
 
 @WebMvcTest
 public class PingControllerTest {
@@ -25,8 +25,7 @@ public class PingControllerTest {
   void ping_returns_pong() throws Exception {
 
     mockMvc
-        .perform(
-            MockMvcRequestBuilders.get(PING_URI))
+        .perform(MockMvcRequestBuilders.get(PING_URI))
         .andExpectAll(
             MockMvcResultMatchers.status().isOk(),
             MockMvcResultMatchers.content().contentType(new MediaType(MediaType.TEXT_PLAIN, StandardCharsets.UTF_8)),

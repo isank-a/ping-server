@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import java.nio.charset.StandardCharsets;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class PingControllerIntegrationTest {
@@ -23,7 +23,7 @@ public class PingControllerIntegrationTest {
   @Test
   void ping_returns_pong() {
 
-    ResponseEntity<String> responseEntity = this.restTemplate.getForEntity(PingControllerTest.PING_URI, String.class);
+    final ResponseEntity<String> responseEntity = this.restTemplate.getForEntity(PingControllerTest.PING_URI, String.class);
 
     assertAll(
         () -> assertNotNull(responseEntity),
