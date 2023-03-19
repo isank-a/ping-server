@@ -15,7 +15,6 @@ public class PingController {
 
   @GetMapping(path = "ping", produces = MediaType.TEXT_PLAIN_VALUE)
   public String ping() {
-
     log.info("Returning :: {}", PONG);
 
     return PONG;
