@@ -30,6 +30,7 @@ public class PingControllerIntegrationTest {
         () -> assertEquals(200, responseEntity.getStatusCode().value()),
         () -> assertEquals(new MediaType(MediaType.TEXT_PLAIN, StandardCharsets.UTF_8), responseEntity.getHeaders().getContentType()),
         () -> assertTrue(responseEntity.hasBody()),
-        () -> assertEquals(PingControllerTest.PONG, responseEntity.getBody()));
+        () -> assertEquals(PingControllerTest.PONG, responseEntity.getBody())
+    );
   }
 }
