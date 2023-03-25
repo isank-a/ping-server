@@ -22,8 +22,7 @@ public class PingControllerIntegrationTest {
 
   @Test
   void ping_returns_pong() {
-    ResponseEntity<String> responseEntity =
-        this.restTemplate.getForEntity(PingControllerTest.PING_URI, String.class);
+    ResponseEntity<String> responseEntity = this.restTemplate.getForEntity(PingControllerTest.PING_URI, String.class);
 
     assertAll(
         () -> assertNotNull(responseEntity),
