@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'org.ping.server'
-version = '1.0.12'
+version = '1.0.13'
 sourceCompatibility = '21'
 
 configurations {
