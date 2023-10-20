@@ -6,7 +6,7 @@ plugins {
 
 group = 'org.ping.server'
 version = '1.0.12'
-sourceCompatibility = '17'
+sourceCompatibility = '21'
 
 configurations {
 	compileOnly {
