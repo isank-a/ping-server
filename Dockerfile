@@ -1,4 +1,4 @@
-FROM gradle:jdk17 as builder
+FROM gradle:jdk21 as builder
 
 WORKDIR /project
 
@@ -6,7 +6,7 @@ COPY . /project
 
 RUN gradle clean build -x test
 
-FROM azul/zulu-openjdk-alpine:17-jre-headless as layer
+FROM azul/zulu-openjdk-alpine:21-jre-headless as layer
 
 WORKDIR /application
 
@@ -14,7 +14,7 @@ COPY --from=builder /project/build/libs/*.jar application.jar
 
 RUN java -Djarmode=layertools -jar application.jar extract
 
-FROM azul/zulu-openjdk-alpine:17-jre-headless
+FROM azul/zulu-openjdk-alpine:21-jre-headless
 
 WORKDIR /application
 
